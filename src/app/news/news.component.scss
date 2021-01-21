@@ -1,0 +1,63 @@
+$cardHeight: 450px;
+$info-heigh: 100px; 
+$info-width: 90%;
+$info-backgroundColor: white;
+
+
+
+.news-mini-card {
+    position: relative;
+    min-height: $cardHeight;
+    height: 100%;
+    padding: 1em;
+
+}
+
+// .news-mini-container {
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: wrap;
+//     justify-content: space-between;
+// }
+
+
+.news-mini-img {
+    transform-origin: center;
+    width: 100%;
+    object-fit: contain;
+    transform: scale(1);
+    transition: all 0.75s ease-in-out;
+}
+
+.news-mini-img:hover {
+    transform: scale(1.15);
+
+}
+
+.news-mini-info-container {
+    position: relative;
+    height: $info-heigh;
+}
+
+.news-mini-info {
+    position: absolute;
+    top: -25%;
+    left: 0;
+    padding: 10px;
+    width: $info-width;  
+    background-color: $info-backgroundColor;
+}
+
+
+
+
+.search-container {
+    width: 350px;
+}
+
+.progress-container {
+    height: 20px;
+    margin-top: -1em;
+}
+
+

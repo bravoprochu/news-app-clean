@@ -1,4 +1,6 @@
 export const environment = {
   production: true,
-  newsApiKey: ''
+  newsApiKey: '',
+  newsAPIUrlTopHeadlins: 'https://newsapi.org/v2/top-headlines?',
+  proxyUrl: 'https://cors-proxy.htmldriven.com/?url='
 };

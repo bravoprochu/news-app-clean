@@ -1,0 +1,49 @@
+$titleBoxHeight: 300px;
+
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+
+.comment-item {
+    height: 100%;
+}
+.comment-item-comment {
+    padding: 0.5em;
+}
+
+
+.info-container {
+    width: 100%;
+    height: $titleBoxHeight;
+    position: relative;
+}
+
+
+.info-title {
+    position: absolute;
+    padding: 1.5em 0 0 1.5em;
+    top: -20px;
+    right: 0;
+    height: $titleBoxHeight;
+    width: 80%;
+
+    background-color: white;  
+
+}
+
+
+.main-img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+
+.read-more {
+    padding: 1em;
+}
+

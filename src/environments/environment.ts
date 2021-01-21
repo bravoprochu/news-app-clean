@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   newsApiKey: '3febf3e1156a433086eb8f6c8bbc972a',
+  newsAPIUrlTopHeadlins: 'https://newsapi.org/v2/top-headlines?',
+  proxyUrl: 'https://cors-anywhere.herokuapp.com/'
 };
 
 /*

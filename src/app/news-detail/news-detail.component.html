@@ -1,9 +1,66 @@
-<div class="content">
-    <div *ngIf="(article$ | async) as article">
-        {{ article.title }} details
-        <!-- Artile man image -->
-        <!-- Artile title, description, metadata -->
-        <!-- Read more button -->
-        <!-- Comments section -->
+<mat-card class="content">
+    <!-- Artile man image -->
+    <!-- Artile title, description, metadata -->
+    <!-- Read more button -->
+    <!-- Comments section -->
+    <img class="main-img" [attr.src]="article.urlToImage" [attr.alt]="article.title">
+
+    <div class="info-container">
+
+
+        <div class="info-title">
+            <h1 class="mat-h1">
+                {{article.title | uppercase}}
+            </h1>
+
+            <h2 class="mat-h2 text-overflow">
+                {{article.description}}
+            </h2>
+
+            <h2 class="mat-h2 text-overflow info-content">
+                {{article.content}}
+            </h2>
+
+            <div class="read-more" fxLayout fxLayoutAlign="center">
+                <button mat-raised-button color="warn">read more</button>
+            </div>
+        </div>
+
     </div>
-</div>
+
+    <section class="comments-container">
+        <h3 class="mat-h3">{{comments.length}} Comments</h3>
+        
+
+        <div *ngFor="let comment of comments">
+            <div class="comment-item" fxLayout fxLayoutAlign="space-between center" fxLayoutGap="10px">
+                <div>
+                    <img class="avatar" [attr.src]="comment.avatar" [attr.alt]="'commented by:'+comment.name">
+                </div>
+    
+                <div>
+                    <div>
+                        <div fxLayout fxLayoutAlign="space-between">
+                            <div>{{comment.name}}</div>
+                            <div>{{comment.date | date}}</div>
+                        </div>
+    
+                    </div>
+    
+    
+                    <div>
+                        <span class="mat-small">
+                            {{comment.comment}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <mat-divider ></mat-divider>
+            
+        </div>
+
+
+    </section>
+
+</mat-card>

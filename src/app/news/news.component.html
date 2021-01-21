@@ -1,18 +1,50 @@
-<div class="content">
+<mat-card class="content">    
+    <div class="search-container">
+        
+        
+        
+        <mat-form-field class="search-container">
+            <mat-label>Search</mat-label>
+            <input [formControl]="searchPhrase$" matInput placeholder="Search" type="search" aria-label="search">
+        </mat-form-field>
 
-
-
-    <mat-form-field class="example-full-width">
-        <mat-label>Favorite food</mat-label>
-        <input formContro="search$" matInput placeholder="Ex. Pizza" value="Sushi">
-      </mat-form-field>
-
-    <div *ngFor="let article of articles">
-        <a routerLink="/article" [state]="article">{{ article.title }}</a>
+        <div class="progress-container">
+            <mat-progress-bar *ngIf="isInProgress" mode="indeterminate"></mat-progress-bar>
+        </div>
     </div>
+
+    
+
+    <div fxLayout="row wrap">
+        <div class="news-mini-card" fxFlex="100" fxFlex.sm="50" fxFlex.gt-sm="33"  *ngFor="let article of articles">
+            <a routerLink="/article" [state]="article">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080">
+                    <image  class="news-mini-img" x="0" y="0" width="100%"  [attr.href]="article.urlToImage" [attr.alt]="article.title" preserveAspectRatio="xMidYMid slice"></image>     
+                </svg>
+            </a>
+            
+            <!-- <img class="news-mini-img" [attr.src]="article.urlToImage" [attr.alt]="article.title"> -->
+
+            <div class="news-mini-info-container">
+                <div class="news-mini-info">
+                    <h6 class="mat-small">
+                        {{article.source.name | uppercase}}, {{article.publishedAt |  date}}
+                    </h6>
+                    <h2 class="mat-title text-overflow">
+                        {{article.title | uppercase}}
+                    </h2>
+    
+                    <h4 class="mat-h4">
+                        {{article.description}}
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Search mat input with debouncing and mat progress bar for loading -->
     <!-- List of fetched articles as snippets per the provided designs -->
     <!-- No results indication -->
 
-</div>
+</mat-card>

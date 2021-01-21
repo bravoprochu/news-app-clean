@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {IArticle}  from '../interfaces/i-article'
+import { IComment } from '../interfaces/i-comment';
 
 @Component({
     selector: 'app-news-detail',
@@ -10,9 +12,54 @@ import { map } from 'rxjs/operators';
     styleUrls: ['./news-detail.component.scss']
 })
 export class NewsDetailComponent implements OnInit {
-    public article$: Observable<object>;
+    constructor(
+        public activatedRoute: ActivatedRoute
+    ) { }
 
-    public comments: any[] = [
+
+    public ngOnInit() {
+        this.initActivatedRoutes();
+    }
+
+
+    public article$: Observable<object>;
+    article: IArticle;
+
+
+
+    initActivatedRoutes(){
+                this.activatedRoute.paramMap.pipe(
+            map(() => window.history.state)
+        )
+        .subscribe(
+             (_state:any)=>{
+                  console.log('_state subs:', _state);
+                  this.article = _state;
+                  
+             },
+             (error)=>console.log('_state error', error),
+             ()=>console.log('_state completed..')
+        );
+
+        // Make sure that this page can only be
+        // accessible from the main News list with
+        // a loaded article from 'state', if url entered
+        // manually from the browser it should go back to
+        // the /news view
+
+        //
+        // Used canActivateDetailGuard (path guard)
+        //
+    }
+
+
+    public goToArticle(url: string): void {
+        // Open original article in new tab
+    }
+
+
+    //#region extra data
+    public comments: IComment[] = [
         {
             name: 'Chris Nat',
             date: new Date(),
@@ -43,24 +90,5 @@ export class NewsDetailComponent implements OnInit {
                   in culpa qui officia deserunt mollit anim id est laborum.`,
         },
     ];
-
-    constructor(
-        public activatedRoute: ActivatedRoute
-    ) { }
-
-    public ngOnInit() {
-        this.article$ = this.activatedRoute.paramMap.pipe(
-            map(() => window.history.state)
-        );
-
-        // Make sure that this page can only be
-        // accessible from the main News list with
-        // a loaded article from 'state', if url entered
-        // manually from the browser it should go back to
-        // the /news view
-    }
-
-    public goToArticle(url: string): void {
-        // Open original article in new tab
-    }
+    //#endregion
 }
