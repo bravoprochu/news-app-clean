@@ -62,7 +62,7 @@ export class NewsComponent implements OnInit {
                 if(_searchPhrase && _searchPhrase.length > 0) {
                     return this.newsService.getNews$(_searchPhrase);
                 } else {
-                    return of();
+                    return this.newsService.getNews$(".");
                 }                
             }),
         )
