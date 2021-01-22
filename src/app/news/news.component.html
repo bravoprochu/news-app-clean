@@ -9,22 +9,19 @@
         </mat-form-field>
 
         <div class="progress-container">
-            <mat-progress-bar *ngIf="isInProgress" mode="indeterminate"></mat-progress-bar>
+            <mat-progress-bar *ngIf="isInProgress" mode="indeterminate" color="warn"></mat-progress-bar>
         </div>
     </div>
 
     
 
-    <div fxLayout="row wrap">
-        <div class="news-mini-card" fxFlex="100" fxFlex.sm="50" fxFlex.gt-sm="33"  *ngFor="let article of articles">
+    <section *ngIf="articles.length>0" fxLayout="row wrap">
+        <section class="news-mini-card" fxFlex="100" fxFlex.sm="50" fxFlex.gt-sm="33" *ngFor="let article of articles">
             <a routerLink="/article" [state]="article">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080">
                     <image  class="news-mini-img" x="0" y="0" width="100%"  [attr.href]="article.urlToImage" [attr.alt]="article.title" preserveAspectRatio="xMidYMid slice"></image>     
                 </svg>
             </a>
-            
-            <!-- <img class="news-mini-img" [attr.src]="article.urlToImage" [attr.alt]="article.title"> -->
-
             <div class="news-mini-info-container">
                 <div class="news-mini-info">
                     <h6 class="mat-small">
@@ -39,7 +36,17 @@
                     </h4>
                 </div>
             </div>
-        </div>
+        </section>
+    </section>
+
+
+    <section *ngIf="articles.length==0" fxLayout fxLayoutAlign="center">
+        <h3 class="mat-h3" *ngIf="!isInProgress">No articles found for "{{searchPhrase$.value}}"</h3>
+        <h3 class="mat-h3">Getting data</h3>
+    </section>
+
+    <div>
+
     </div>
 
 

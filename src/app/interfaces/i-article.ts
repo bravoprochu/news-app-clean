@@ -9,5 +9,5 @@ export interface IArticle {
     }
     title: string;
     url: string;
-    urlToImage: string
+    urlToImage?: string
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, repeat, startWith, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { IArticle } from '../interfaces/i-article';
 import { NewsService } from '../news.service';
 
 @Component({
@@ -33,10 +34,11 @@ export class NewsComponent implements OnInit {
 
     articles: any[] = [];
     isDestroyed$: Subject<boolean> = new Subject()
-    isInProgress: boolean;
+    isInProgress: boolean = true;
+    placeholderImage: string = './assets/images/placeholder.jpg';
     search: string;
     searchPhrase$: FormControl = new FormControl();
-    searchPhraseInitValue: string = "trump";
+
 
 
 
@@ -52,49 +54,45 @@ export class NewsComponent implements OnInit {
 
         this.searchPhrase$.valueChanges.pipe(
             takeUntil(this.isDestroyed$),
-            startWith("."),
+            startWith("autor"),
             debounceTime(750),
             distinctUntilChanged(),
             tap(()=>(this.isInProgress = true)),
             switchMap((_searchPhrase:string)=>{
                 if(_searchPhrase && _searchPhrase.length > 0) {
-                    console.log('isSearch')
-                    return this.newsService.getNews$(_searchPhrase).pipe(
-                        
-                    );
+                    return this.newsService.getNews$(_searchPhrase);
                 } else {
                     return of();
-                }
-
-                
+                }                
             }),
         )
         .subscribe(
              (articlesBySearch:any)=>{
                 this.isInProgress = false;
                   console.log('articlesBySearch subs:', articlesBySearch);
-                  this.articles = articlesBySearch.articles;
-                  
+
+                  if(articlesBySearch && articlesBySearch.articles) {
+                    this.articles = (articlesBySearch.articles as IArticle[]).map((art:IArticle)=><IArticle>{
+                        author: art.author,
+                        content: art.content,
+                        description: art.description,
+                        publishedAt: art.publishedAt,
+                        source: art.source,
+                        title: art.title,
+                        url: art.url,
+                        urlToImage: art.urlToImage ? art.urlToImage : this.placeholderImage
+                      });                      
+                  }
+
+
+
+
              },
              (error)=>{
-                 // console.log('articlesBySearch error', error);
                  this.isInProgress = false;
-
                 },
              ()=>console.log('articlesBySearch completed..')
         );
-
-
-        // this.newsService.getNews$('')
-        // .subscribe(
-        //      (_news:any)=>{
-        //           console.log('_news subs:', _news);
-                  
-        //      },
-        //      (error)=>console.log('_news error', error),
-        //      ()=>console.log('_news completed..')
-        // );
-
     }
 
 
