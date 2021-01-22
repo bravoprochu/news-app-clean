@@ -42,12 +42,11 @@
 
     <section *ngIf="articles.length==0" fxLayout fxLayoutAlign="center">
         <h3 class="mat-h3" *ngIf="!isDataError && !isInProgress">No articles found for "{{searchPhrase$.value}}"</h3>
-        <h3 class="mat-h3" *ngIf="!isDataError">Getting data</h3>
+        <h3 class="mat-h3" *ngIf="isInProgress">Getting data</h3>
         <div *ngIf="isDataError">
             <h3 class="mat-h3" >Error</h3>
             <pre class="error-obj-info">{{errorObj | json}}</pre>
         </div>
-        
     </section>
 
     <div>
