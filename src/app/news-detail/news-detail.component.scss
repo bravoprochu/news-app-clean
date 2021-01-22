@@ -14,6 +14,9 @@ $titleBoxHeight: 300px;
 .comment-item-comment {
     padding: 0.5em;
 }
+.comments-amount-info-color {
+    color: red;
+}
 
 
 .info-container {
@@ -29,10 +32,17 @@ $titleBoxHeight: 300px;
     top: -20px;
     right: 0;
     height: $titleBoxHeight;
-    width: 80%;
-
+    width: 70%;
     background-color: white;  
 
+}
+
+.left-side {
+    position: absolute;
+    left: 0;
+    top: 1em;
+    width: 25%;
+    text-align: right;
 }
 
 

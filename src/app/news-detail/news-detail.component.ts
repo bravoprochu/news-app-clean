@@ -1,8 +1,10 @@
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
+import { BREAKPOINTS } from '@angular/flex-layout';
 import { ActivatedRoute } from '@angular/router';
 
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import {IArticle}  from '../interfaces/i-article'
 import { IComment } from '../interfaces/i-comment';
 
@@ -13,17 +15,28 @@ import { IComment } from '../interfaces/i-comment';
 })
 export class NewsDetailComponent implements OnInit {
     constructor(
-        public activatedRoute: ActivatedRoute
+        public activatedRoute: ActivatedRoute,
+        private breakPointObs: BreakpointObserver
+
     ) { }
 
+    ngOnDestroy(): void {
+        this.isDestroyed$.next(true);
+        this.isDestroyed$.complete();
+        this.isDestroyed$.unsubscribe();
+   }
 
     public ngOnInit() {
+        this.initBreakPointObserver();
         this.initActivatedRoutes();
     }
 
 
     public article$: Observable<object>;
     article: IArticle;
+    isDestroyed$: Subject<boolean> = new Subject()
+    isSmall: boolean;
+
 
 
 
@@ -33,9 +46,7 @@ export class NewsDetailComponent implements OnInit {
         )
         .subscribe(
              (_state:any)=>{
-                  console.log('_state subs:', _state);
-                  this.article = _state;
-                  
+                  this.article = _state as IArticle;
              },
              (error)=>console.log('_state error', error),
              ()=>console.log('_state completed..')
@@ -52,9 +63,23 @@ export class NewsDetailComponent implements OnInit {
         //
     }
 
+    initBreakPointObserver(){
+        this.breakPointObs.observe([Breakpoints.Small, Breakpoints.XSmall]).pipe(
+            takeUntil(this.isDestroyed$)
+        )
+        .subscribe(
+             (_breakPointObs:BreakpointState)=>{
+                  this.isSmall = _breakPointObs.matches;
+             },
+             (error)=>console.log('_breakPointObs error', error),
+             ()=>console.log('_breakPointObs completed..')
+        );
+    }
+
+
 
     public goToArticle(url: string): void {
-        // Open original article in new tab
+        window.open(this.article.url, "_blank");
     }
 
 
