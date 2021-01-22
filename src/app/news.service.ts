@@ -83,7 +83,7 @@ export class NewsService {
         // got banned by newsAPI servis (free version allows only 100 req per 24h)
         // mocked news_data data 
         // 
-        return of({costam: null, articles: NEWS_DATA_TEMP});
+        // return of({costam: null, articles: NEWS_DATA_TEMP});
 
         //
         // if no request limit, hit the servis api
@@ -93,7 +93,7 @@ export class NewsService {
 
         return this.httpClient.get(newsAPIUrl).pipe(
             catchError(err=>{
-                return of('error during getting data..')
+                return of(err);
             })
         )
 

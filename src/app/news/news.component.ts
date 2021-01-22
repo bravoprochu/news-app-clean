@@ -33,6 +33,8 @@ export class NewsComponent implements OnInit {
 
 
     articles: any[] = [];
+    errorObj: any;
+    isDataError: boolean;
     isDestroyed$: Subject<boolean> = new Subject()
     isInProgress: boolean = true;
     placeholderImage: string = './assets/images/placeholder.jpg';
@@ -72,6 +74,13 @@ export class NewsComponent implements OnInit {
                   console.log('articlesBySearch subs:', articlesBySearch);
 
                   if(articlesBySearch && articlesBySearch.articles) {
+                  //
+                  // response is ok, setting data, checking if urlToImage has value, if not replace to placeholder
+                  //
+
+                  this.isDataError = false;
+                  this.errorObj = null;
+
                     this.articles = (articlesBySearch.articles as IArticle[]).map((art:IArticle)=><IArticle>{
                         author: art.author,
                         content: art.content,
@@ -83,6 +92,10 @@ export class NewsComponent implements OnInit {
                         urlToImage: art.urlToImage ? art.urlToImage : this.placeholderImage
                       });                      
                   }
+                  if(articlesBySearch && articlesBySearch.error) {
+                      this.isDataError = true;
+                      this.errorObj = articlesBySearch.error;
+                  }
 
 
 
@@ -90,13 +103,11 @@ export class NewsComponent implements OnInit {
              },
              (error)=>{
                  this.isInProgress = false;
+                 this.isDataError = true;
+                 this.errorObj = error.error;
                 },
              ()=>console.log('articlesBySearch completed..')
         );
     }
-
-
-
-
 
 }

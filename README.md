@@ -1,3 +1,14 @@
+# ItWorks !
+
+Free newsAPI service allows only for 100 requests so after few hours i went blind and mocked 
+
+
+
+
+
+
+----
+
 # News App
 
 Frontend test task for recruitment

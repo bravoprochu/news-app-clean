@@ -5,6 +5,11 @@ $info-backgroundColor: white;
 
 
 
+.error-obj-info {
+    max-width: 100%;
+    white-space: pre-wrap;
+}
+
 .news-mini-card {
     position: relative;
     min-height: $cardHeight;
