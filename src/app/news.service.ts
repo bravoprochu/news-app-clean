@@ -88,8 +88,11 @@ export class NewsService {
         //
         // if no request limit, hit the servis api
         //
-        const params =  `language=en&q=${searchPhrase}&apiKey=${environment.newsApiKey}`;
+        const query = searchPhrase && searchPhrase.length > 0 ? `&q=${searchPhrase}` : '';
+        const params =  encodeURI(`language=en${query}&apiKey=${environment.newsApiKey}`);
         const newsAPIUrl = `${environment.newsAPIUrlTopHeadlins}${params}`
+
+        console.log('url', params, newsAPIUrl);
 
         return this.httpClient.get(newsAPIUrl).pipe(
             catchError(err=>{

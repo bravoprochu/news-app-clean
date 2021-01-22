@@ -56,7 +56,7 @@ export class NewsComponent implements OnInit {
 
         this.searchPhrase$.valueChanges.pipe(
             takeUntil(this.isDestroyed$),
-            startWith("autor"),
+            startWith(null),
             debounceTime(750),
             distinctUntilChanged(),
             tap(()=>(this.isInProgress = true)),
@@ -64,7 +64,7 @@ export class NewsComponent implements OnInit {
                 if(_searchPhrase && _searchPhrase.length > 0) {
                     return this.newsService.getNews$(_searchPhrase);
                 } else {
-                    return this.newsService.getNews$(".");
+                    return this.newsService.getNews$('');
                 }                
             }),
         )
