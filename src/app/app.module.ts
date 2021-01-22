@@ -16,11 +16,12 @@ import { NewsApiKeyConfig, NgnewsModule } from 'angular-news-api';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LayoutModule } from '@angular/cdk/layout';
+import { environment } from 'src/environments/environment';
 
-const newsApiKey = '3febf3e1156a433086eb8f6c8bbc972a';
+const newsApiKey = 'REMOVED_TO_ENVIRONMENT....';
 
 const newsApiConfig: NewsApiKeyConfig = {
-    key: newsApiKey
+    key: environment.newsApiKey
   };
 
 @NgModule({
