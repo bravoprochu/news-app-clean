@@ -15,6 +15,9 @@
         <h3 class="mat-h3 text-overflow info-content">
             {{article.content}}
         </h3>
+        <div class="read-more" fxLayout fxLayoutAlign="center">
+            <button (click)="goToArticle()" mat-raised-button color="warn">Read more</button>
+        </div>
     </section>
 
 
@@ -54,7 +57,7 @@
     </section>
 
     <section class="comments-container">
-        <h3 class="mat-h3 comments-amount-info-color">
+        <h3 class="mat-h3">
             {{comments.length}} Comments
         </h3>
 
