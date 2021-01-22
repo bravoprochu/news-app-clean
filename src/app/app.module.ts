@@ -15,6 +15,7 @@ import { NewsComponent } from './news/news.component';
 import { NewsApiKeyConfig, NgnewsModule } from 'angular-news-api';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { LayoutModule } from '@angular/cdk/layout';
 
 const newsApiKey = '3febf3e1156a433086eb8f6c8bbc972a';
 
@@ -29,12 +30,13 @@ const newsApiConfig: NewsApiKeyConfig = {
         NewsComponent,
     ],
     imports: [
+        AppRoutingModule,
         BrowserModule,
         BrowserAnimationsModule,
-        AppRoutingModule,
         FormsModule,
         HttpClientModule,
         FlexLayoutModule,
+        LayoutModule,
         MatButtonModule,
         MatCardModule,
         MatDividerModule,
