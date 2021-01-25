@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { of, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, repeat, startWith, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { IArticle } from '../interfaces/i-article';
 import { NewsService } from '../news.service';

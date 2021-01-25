@@ -1,11 +1,10 @@
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
-import { BREAKPOINTS } from '@angular/flex-layout';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
-import {IArticle}  from '../interfaces/i-article'
+import { IArticle}  from '../interfaces/i-article'
 import { IComment } from '../interfaces/i-comment';
 
 @Component({

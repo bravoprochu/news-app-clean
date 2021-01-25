@@ -14,6 +14,7 @@ import { slideInAnimation } from './animations';
 export class AppComponent {
     public title = 'News';
     public article = false;
+    menu: any[];
 
     constructor(router: Router) {
         router.events.subscribe(() => {
