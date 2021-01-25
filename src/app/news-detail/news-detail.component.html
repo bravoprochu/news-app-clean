@@ -1,19 +1,19 @@
 <mat-card class="content">
-    <img class="main-img" [attr.src]="article.urlToImage" [attr.alt]="article.title">
+    <img class="main-img" [attr.src]="article?.urlToImage" [attr.alt]="article?.title">
 
 
     <section *ngIf="isSmall">
-        <h5 class="mat-h5">{{article.source.name}}&nbsp;&nbsp;{{article.author}}&nbsp;&nbsp;{{article.publishedAt |
+        <h5 class="mat-h5">{{article?.source.name}}&nbsp;&nbsp;{{article?.author}}&nbsp;&nbsp;{{article?.publishedAt |
             date}}&nbsp;&nbsp;<span class="comments-amount-info-color">{{comments.length}} Comments</span></h5>
         <h1 class="mat-h1">
-            {{article.title | uppercase}}
+            {{article?.title | uppercase}}
         </h1>
         <h2 class="mat-h2 text-overflow">
-            {{article.description}}
+            {{article?.description}}
         </h2>
 
         <h3 class="mat-h3 text-overflow info-content">
-            {{article.content}}
+            {{article?.content}}
         </h3>
         <div class="read-more" fxLayout fxLayoutAlign="center">
             <button (click)="goToArticle()" mat-raised-button color="warn">Read more</button>
@@ -24,15 +24,15 @@
     <section class="info-container" *ngIf="!isSmall">
         <section class="info-title">
             <h1 class="mat-h1">
-                {{article.title | uppercase}}
+                {{article?.title | uppercase}}
             </h1>
 
             <h2 class="mat-h2 text-overflow">
-                {{article.description}}
+                {{article?.description}}
             </h2>
 
             <h3 class="mat-h3 text-overflow info-content">
-                {{article.content}}
+                {{article?.content}}
             </h3>
 
             <div class="read-more" fxLayout fxLayoutAlign="center">
@@ -42,13 +42,13 @@
 
         <section class="left-side">
             <h5 class="mat-h5">
-                {{article.source.name}}
+                {{article?.source.name}}
             </h5>
             <h5 class="mat-h5">
-                {{article.author}}
+                {{article?.author}}
             </h5>
             <h5 class="mat-h5">
-                {{article.publishedAt | date}}
+                {{article?.publishedAt | date}}
             </h5>
             <h5 class="mat-h5 comments-amount-info-color ">
                 {{comments.length}} Comments
