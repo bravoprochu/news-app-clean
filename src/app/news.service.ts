@@ -5,8 +5,7 @@ import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { IArticle } from './interfaces/i-article';
-// import { NewsApiService } from 'angular-news-api';
-// import { Observable } from 'rxjs';
+
 
 
 export const NEWS_DATA_TEMP: IArticle[] = [
@@ -91,8 +90,6 @@ export class NewsService {
         const query = searchPhrase && searchPhrase.length > 0 ? `&q=${searchPhrase}` : '';
         const params =  encodeURI(`language=en${query}&apiKey=${environment.newsApiKey}`);
         const newsAPIUrl = `${environment.newsAPIUrlTopHeadlins}${params}`
-
-        console.log('url', params, newsAPIUrl);
 
         return this.httpClient.get(newsAPIUrl).pipe(
             catchError(err=>{

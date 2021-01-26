@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatCardModule, MatDividerModule } from '@angular/material';
+import { RouterModule } from '@angular/router';
 import { NewsDetailComponent } from './news-detail.component';
 
 describe('NewsDetailComponent', () => {
@@ -7,6 +9,12 @@ describe('NewsDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        MatCardModule,
+        MatDividerModule,
+        RouterModule.forRoot([])
+   
+      ],
       declarations: [ NewsDetailComponent ]
     })
     .compileComponents();

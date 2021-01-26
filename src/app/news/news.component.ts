@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { of, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, repeat, startWith, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { IArticle } from '../interfaces/i-article';
 import { NewsService } from '../news.service';
@@ -53,7 +53,6 @@ export class NewsComponent implements OnInit {
         // Dummy article for navigation purpose,
         // replace with newsService usage
 
-
         this.searchPhrase$.valueChanges.pipe(
             takeUntil(this.isDestroyed$),
             startWith(null),
@@ -71,7 +70,6 @@ export class NewsComponent implements OnInit {
         .subscribe(
              (articlesBySearch:any)=>{
                 this.isInProgress = false;
-                  console.log('articlesBySearch subs:', articlesBySearch);
 
                   if(articlesBySearch && articlesBySearch.articles) {
                   //
@@ -106,7 +104,6 @@ export class NewsComponent implements OnInit {
                  this.isDataError = true;
                  this.errorObj = error.error;
                 },
-             ()=>console.log('articlesBySearch completed..')
         );
     }
 

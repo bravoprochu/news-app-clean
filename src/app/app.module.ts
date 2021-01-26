@@ -20,7 +20,7 @@ import { environment } from 'src/environments/environment';
 
 const newsApiKey = 'REMOVED_TO_ENVIRONMENT....';
 
-const newsApiConfig: NewsApiKeyConfig = {
+export const newsApiConfig: NewsApiKeyConfig = {
     key: environment.newsApiKey
   };
 

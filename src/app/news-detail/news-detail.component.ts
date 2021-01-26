@@ -1,11 +1,10 @@
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
-import { BREAKPOINTS } from '@angular/flex-layout';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
-import {IArticle}  from '../interfaces/i-article'
+import { IArticle}  from '../interfaces/i-article'
 import { IComment } from '../interfaces/i-comment';
 
 @Component({
@@ -47,9 +46,7 @@ export class NewsDetailComponent implements OnInit {
         .subscribe(
              (_state:any)=>{
                   this.article = _state as IArticle;
-             },
-             (error)=>console.log('_state error', error),
-             ()=>console.log('_state completed..')
+             }
         );
 
         // Make sure that this page can only be
@@ -71,8 +68,6 @@ export class NewsDetailComponent implements OnInit {
              (_breakPointObs:BreakpointState)=>{
                   this.isSmall = _breakPointObs.matches;
              },
-             (error)=>console.log('_breakPointObs error', error),
-             ()=>console.log('_breakPointObs completed..')
         );
     }
 
