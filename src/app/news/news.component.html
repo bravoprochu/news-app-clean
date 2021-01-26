@@ -12,7 +12,7 @@
 
     
 
-    <section *ngIf="articles.length>0" fxLayout="row wrap">
+    <section  fxLayout="row wrap">
         <section class="news-mini-card" fxFlex="100" fxFlex.sm="50" fxFlex.gt-sm="33" *ngFor="let article of articles">
             <a routerLink="/article" [state]="article">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080">

@@ -5,14 +5,17 @@ import { MatCardModule, MatDividerModule, MatFormFieldModule, MatInputModule, Ma
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgnewsModule } from 'angular-news-api';
+import { of } from 'rxjs';
 import { newsApiConfig } from '../app.module';
-import { NewsService } from '../news.service';
+import { IArticle } from '../interfaces/i-article';
+import { NewsService, NEWS_DATA_TEMP } from '../news.service';
 
 import { NewsComponent } from './news.component';
 
 describe('NewsComponent', () => {
   let component: NewsComponent;
   let fixture: ComponentFixture<NewsComponent>;
+  let el: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -26,11 +29,20 @@ describe('NewsComponent', () => {
         MatProgressBarModule,
         NgnewsModule.forRoot(newsApiConfig),
         ReactiveFormsModule,
-        RouterModule
+        RouterModule.forRoot([])
       ],
       declarations: [ NewsComponent ],
       providers: [
-        NewsService,
+        {
+          provide: NewsService, 
+          useValue: {
+            getNews$: (str:string) => {
+              return of({
+                articles: NEWS_DATA_TEMP,
+              });
+            }
+          }
+        }
       ]
     })
     .compileComponents();
@@ -39,39 +51,21 @@ describe('NewsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NewsComponent);
     component = fixture.componentInstance;
+    component.articles = NEWS_DATA_TEMP;
     fixture.detectChanges();
   });
 
+  it('should have articles array length', ()=>{
+    expect(component.articles.length).toEqual(2, 'articles array length');
+  })
 
+  it('should have sections with .news-mini-card class', ()=> {
+    const el = fixture.nativeElement as HTMLElement;
+    expect(el.querySelectorAll('.news-mini-card').length).toEqual(2, 'sections with class news-mini-card');
+  })
 
-
-  // it('should getting data from news service API', fakeAsync(()=>{
-  //   const newsService = fixture.debugElement.injector.get(NewsService);
-  //   const data = spyOn(component, "ngOnInit").and.callFake(()=>{
-  //     return of({articles: []}).pipe(delay(300))
-  //   });
-
-    
-  //   newsService.getNews$(null).subscribe(res=>{
-  //     expect(res.articles).toBe([])
-  //   })
-
-  //   expect(component.isInProgress).toEqual(true);
-  //   tick(300);
-  //   fixture.detectChanges();
-  //   expect(component.isInProgress).toEqual(false);
-
-  // }));
-
-  // it('should show error on error data from news service API', fakeAsync(()=>{
-  //   const newsService = fixture.debugElement.injector.get(NewsService);
-  //   const data = spyOn(newsService, "getNews$").and.callFake(()=>{
-  //     return of({status: 'error'}).pipe(delay(300))
-  //   });
-  //   fixture.detectChanges();
-  //   expect(component.isDataError).toBe(true);
-  //   tick(300)
-  //   expect(component.isDataError).not.toBe(true);
-  // }));
-
+  it('should 1st news info title to be AUTOR 1', ()=> {
+    const el = fixture.nativeElement as HTMLElement;
+    expect(el.querySelector('.news-mini-info .mat-title').textContent).toContain('AUTOR 1', 'first news section info title');
+  })
 });
