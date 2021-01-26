@@ -91,8 +91,6 @@ export class NewsService {
         const params =  encodeURI(`language=en${query}&apiKey=${environment.newsApiKey}`);
         const newsAPIUrl = `${environment.newsAPIUrlTopHeadlins}${params}`
 
-        console.log('url', params, newsAPIUrl);
-
         return this.httpClient.get(newsAPIUrl).pipe(
             catchError(err=>{
                 return of(err);

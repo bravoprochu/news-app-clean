@@ -46,9 +46,7 @@ export class NewsDetailComponent implements OnInit {
         .subscribe(
              (_state:any)=>{
                   this.article = _state as IArticle;
-             },
-             (error)=>console.log('_state error', error),
-             ()=>console.log('_state completed..')
+             }
         );
 
         // Make sure that this page can only be
@@ -70,8 +68,6 @@ export class NewsDetailComponent implements OnInit {
              (_breakPointObs:BreakpointState)=>{
                   this.isSmall = _breakPointObs.matches;
              },
-             (error)=>console.log('_breakPointObs error', error),
-             ()=>console.log('_breakPointObs completed..')
         );
     }
 

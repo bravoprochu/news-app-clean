@@ -52,7 +52,7 @@ export class NewsComponent implements OnInit {
     private fetchArticles(search?: string): void {
         // Dummy article for navigation purpose,
         // replace with newsService usage
-        
+
         this.searchPhrase$.valueChanges.pipe(
             takeUntil(this.isDestroyed$),
             startWith(null),
@@ -70,7 +70,6 @@ export class NewsComponent implements OnInit {
         .subscribe(
              (articlesBySearch:any)=>{
                 this.isInProgress = false;
-                  console.log('articlesBySearch subs:', articlesBySearch);
 
                   if(articlesBySearch && articlesBySearch.articles) {
                   //
@@ -105,7 +104,6 @@ export class NewsComponent implements OnInit {
                  this.isDataError = true;
                  this.errorObj = error.error;
                 },
-             ()=>console.log('articlesBySearch completed..')
         );
     }
 
