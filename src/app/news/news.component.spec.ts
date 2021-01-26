@@ -42,7 +42,36 @@ describe('NewsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+
+
+
+  // it('should getting data from news service API', fakeAsync(()=>{
+  //   const newsService = fixture.debugElement.injector.get(NewsService);
+  //   const data = spyOn(component, "ngOnInit").and.callFake(()=>{
+  //     return of({articles: []}).pipe(delay(300))
+  //   });
+
+    
+  //   newsService.getNews$(null).subscribe(res=>{
+  //     expect(res.articles).toBe([])
+  //   })
+
+  //   expect(component.isInProgress).toEqual(true);
+  //   tick(300);
+  //   fixture.detectChanges();
+  //   expect(component.isInProgress).toEqual(false);
+
+  // }));
+
+  // it('should show error on error data from news service API', fakeAsync(()=>{
+  //   const newsService = fixture.debugElement.injector.get(NewsService);
+  //   const data = spyOn(newsService, "getNews$").and.callFake(()=>{
+  //     return of({status: 'error'}).pipe(delay(300))
+  //   });
+  //   fixture.detectChanges();
+  //   expect(component.isDataError).toBe(true);
+  //   tick(300)
+  //   expect(component.isDataError).not.toBe(true);
+  // }));
+
 });

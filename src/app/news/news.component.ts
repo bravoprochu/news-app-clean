@@ -52,8 +52,7 @@ export class NewsComponent implements OnInit {
     private fetchArticles(search?: string): void {
         // Dummy article for navigation purpose,
         // replace with newsService usage
-
-
+        
         this.searchPhrase$.valueChanges.pipe(
             takeUntil(this.isDestroyed$),
             startWith(null),
