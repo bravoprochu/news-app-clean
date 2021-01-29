@@ -6,8 +6,8 @@ export interface IArticle {
     source: {
         id: string;
         name: string;
-    }
+    };
     title: string;
     url: string;
-    urlToImage?: string
+    urlToImage?: string;
 }

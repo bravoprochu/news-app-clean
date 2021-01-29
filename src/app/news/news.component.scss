@@ -1,9 +1,7 @@
 $cardHeight: 450px;
-$info-heigh: 100px; 
+$info-heigh: 100px;
 $info-width: 90%;
 $info-backgroundColor: white;
-
-
 
 .error-obj-info {
     max-width: 100%;
@@ -15,7 +13,6 @@ $info-backgroundColor: white;
     min-height: $cardHeight;
     height: 100%;
     padding: 1em;
-
 }
 
 .news-mini-img {
@@ -28,7 +25,6 @@ $info-backgroundColor: white;
 
 .news-mini-img:hover {
     transform: scale(1.15);
-
 }
 
 .news-mini-info-container {
@@ -41,12 +37,9 @@ $info-backgroundColor: white;
     top: -25%;
     left: 0;
     padding: 10px;
-    width: $info-width;  
+    width: $info-width;
     background-color: $info-backgroundColor;
 }
-
-
-
 
 .search-container {
     width: 350px;
@@ -56,5 +49,3 @@ $info-backgroundColor: white;
     height: 20px;
     margin-top: -1em;
 }
-
-
